@@ -13,7 +13,7 @@ window.addEventListener('resize', resizeCanvas); // 窗口大小变化时适配
 // 设置背景颜色
 document.body.style.margin = 0;
 document.body.style.overflow = 'hidden';
-canvas.style.backgroundColor = '#70c5ce'; // 背景颜色设为天蓝色
+canvas.style.backgroundColor = '#000000'; // 背景颜色设为天蓝色
 
 // 加载角色图片
 const birdIdle = new Image();  // 静止状态
