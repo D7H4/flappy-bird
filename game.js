@@ -3,8 +3,12 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // 设置画布尺寸，适应手机屏幕
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas(); // 初始化时调用
+window.addEventListener('resize', resizeCanvas); // 窗口大小变化时适配
 
 // 设置背景颜色
 document.body.style.margin = 0;
@@ -86,4 +90,3 @@ function gameLoop() {
 birdIdle.onload = birdFlap.onload = function() {
   gameLoop();
 };
-
