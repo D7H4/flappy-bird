@@ -2,9 +2,9 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// 设置画布尺寸
-canvas.width = 480;
-canvas.height = 640;
+// 设置画布尺寸，适应手机屏幕
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 // 设置背景颜色
 document.body.style.margin = 0;
@@ -30,21 +30,21 @@ const bird = {
   isFlapping: false      // 是否正在拍翅
 };
 
-// 跳跃操作
-document.addEventListener('keydown', function(event) {
-  if (event.key === ' ' && !bird.isGameStarted) {
+// 触摸开始时的操作
+canvas.addEventListener('touchstart', function(event) {
+  event.preventDefault();  // 防止屏幕滚动
+
+  if (!bird.isGameStarted) {
     bird.isGameStarted = true;  // 开始游戏
-  } else if (event.key === ' ' && bird.isGameStarted) {
+  } else {
     bird.speed = bird.lift;  // 控制跳跃力度
     bird.isFlapping = true;  // 开始拍翅
   }
 });
 
-// 松开空格键时停止拍翅
-document.addEventListener('keyup', function(event) {
-  if (event.key === ' ') {
-    bird.isFlapping = false;  // 停止拍翅
-  }
+// 触摸结束时的操作
+canvas.addEventListener('touchend', function(event) {
+  bird.isFlapping = false;  // 停止拍翅
 });
 
 // 游戏主循环
@@ -86,3 +86,4 @@ function gameLoop() {
 birdIdle.onload = birdFlap.onload = function() {
   gameLoop();
 };
+
